@@ -6,25 +6,80 @@ InterviewIQ is a modern, full-stack career preparation and interview platform bu
 
 ---
 
-## 🚀 Quick Start (5-Minute Evaluation Walkthrough)
+## 🏗️ Architecture & Folder Structure
 
-### 1. Installation
+InterviewIQ is organized into a clean, decoupled architecture:
+
+```
+interviewiq/
+├── backend/                  # Node.js + Express REST API Server (Port 5000)
+│   ├── src/
+│   │   ├── routes/           # REST endpoints (auth, resume, job, ats, interview, dashboard, profile)
+│   │   ├── services/         # Business logic (aiService, resumeParser, jobMatcher, atsScorer, db, auth)
+│   │   ├── types/            # TypeScript domain interfaces
+│   │   └── server.ts         # Main Express entrypoint (CORS, cookies, error handling)
+│   ├── data/                 # Persistent storage (database.json)
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── frontend/                 # Next.js 14 App Router Client (Port 3000)
+│   ├── src/
+│   │   ├── app/              # Clean SaaS UI pages & layouts
+│   │   ├── components/       # Reusable UI components & dialogs
+│   │   ├── context/          # AppContext state & API bridge
+│   │   ├── lib/              # Client utilities & sample data
+│   │   └── types/            # Client TypeScript interfaces
+│   ├── next.config.mjs       # Rewrites proxying /api/* -> http://localhost:5000/api/*
+│   ├── tailwind.config.ts    # Custom light-first SaaS design system
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── package.json              # Root workspace orchestrator
+└── README.md
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+
+You can install all dependencies for both frontend and backend from the root:
 
 ```bash
-# Clone or navigate to the repository directory
-cd IQ
+# Install both backend and frontend dependencies
+npm run install:all
+```
 
-# Install dependencies
-npm install
+Or individually:
+```bash
+cd backend && npm install
+cd ../frontend && npm install
+```
 
-# (Optional) Copy environment variables template
-cp .env.example .env.local
+### 2. Start Both Servers
 
-# Start the local development server
+From the root directory:
+
+```bash
+# Starts both Backend (port 5000) and Frontend (port 3000) concurrently
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your web browser.
+Or start them in separate terminals:
+
+```bash
+# Terminal 1 — Backend API Server
+npm run dev:backend
+
+# Terminal 2 — Frontend Next.js Client
+npm run dev:frontend
+```
+
+Once running:
+- **Frontend Application**: Open [http://localhost:3000](http://localhost:3000)
+- **Backend API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
+
 
 ---
 

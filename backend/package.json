@@ -1,0 +1,31 @@
+{
+  "name": "interviewiq-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "InterviewIQ REST API Server",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^20.17.0",
+    "@types/pdf-parse": "^1.1.4",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
+  }
+}
